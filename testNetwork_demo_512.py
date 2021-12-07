@@ -59,7 +59,7 @@ inputL = inputL.transpose((0,1))
 inputL = inputL[None,None,...]
 inputL = Variable(torch.from_numpy(inputL).cuda())
 
-for i in range(7):
+for i in range(8):
     sh = np.loadtxt(os.path.join(lightFolder, 'rotate_light_{:02d}.txt'.format(i)))
     sh = sh[0:9]
     sh = sh * 0.7
