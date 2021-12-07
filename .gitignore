@@ -3,3 +3,9 @@
 log_test/
 result_1024
 
+*.jpg
+*.jpeg
+*.png
+*.txt
+.vscode/
+
