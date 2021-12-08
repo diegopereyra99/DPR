@@ -1,2 +1,4 @@
-pytorch>=1.0.0
+pytorch==1.4.0
 opencv-python>=4.0.0
+torchvision==0.5
+tqdm

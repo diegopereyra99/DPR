@@ -9,9 +9,7 @@ import torch
 import cv2
 import argparse
 from tqdm import tqdm
-
-from model.defineHourglass_512_gray_skip import HourglassNet
-
+from utils.inference import load_model
 
 # ---------------- create normal for rendering half sphere ------
 def create_normal(img_size=256):
@@ -57,16 +55,6 @@ def render_half_sphere(normal, sh, img_size=256):
 # -----------------------------------------------------------------
 
 
-def load_model(modelFolder="trained_model", **net_kwds):
-
-    my_network = HourglassNet(**net_kwds)
-    my_network.load_state_dict(torch.load(os.path.join(modelFolder, "trained_model_03.t7")))
-    my_network.cuda()
-    my_network.train(False)
-
-    return my_network
-
-
 def process_img(img, sh, network):
     row, col, _ = img.shape
     img = cv2.resize(img, (512, 512))
@@ -96,8 +84,8 @@ def process_img(img, sh, network):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("src_dir", default="images", type=str)
-    parser.add_argument("dst_dir", default="results", type=str)
+    parser.add_argument("src_dir", type=str)
+    parser.add_argument("dst_dir", type=str)
     parser.add_argument("--compare", "-c", action="store_true")
     args = parser.parse_args()
 
