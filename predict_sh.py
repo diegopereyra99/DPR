@@ -21,6 +21,8 @@ def main():
     else:
         img_fns = os.listdir(args.src_dir)
 
+    img_fns = [fn for fn in img_fns if os.path.exists(os.path.join(args.src_dir, fn))]    
+
     batches = image_generator(img_fns, args.src_dir, batch_size=args.batch_size)
     print("Loading Model...")
     model = load_model()
